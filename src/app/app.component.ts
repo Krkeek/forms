@@ -13,8 +13,16 @@ export class AppComponent {
     "Pro"
 ]
 defaultSubsciption: string = "Advanced";
+content: string = "";
   onSubmit(form: NgForm){
-    console.log(form);
+    if (form.invalid && form.touched || form.invalid) {
+      
+    }else {
+
+      this.content += "email is " + form.value.email + "\n -------password is " + form.value.password;
+
+    }
+
   }
 
 }

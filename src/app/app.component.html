@@ -1,18 +1,25 @@
-<form class="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
   <div class="form-group">
     <label> Mail Address: </label>
-    <input type="email" ngModel  name = "email" required email>
+    <input class="form-control" #email= "ngModel" type="email" ngModel  name = "email" required email>
+    <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email</span>
   </div>
   <div class="form-group">
-    <select  name="subsciption" [ngModel] = "defaultSubsciption">
+    <label for="subsciption">Choose a Subsciption:</label>
+    <select class="form-control"  name="subsciption" [ngModel] = "defaultSubsciption">
         <option *ngFor = "let subsciption of subsciptions" value="{{subsciption}}">{{subsciption}}</option>
       </select>
   </div>
   <div class="form-group">
     <label> Password: </label>
-    <input name="password" type="password" ngModel required>
+    <input class="form-control" #password="ngModel" name="password" type="password" ngModel required>
+    <span class="help-block" *ngIf="!password.valid && password.touched">Please enter a valid password</span>
   </div>
   <div class="form-group">
-    <button type="submit">Submit</button>
+    <button class="btn btn-primary" type="submit">Submit</button>
+    <span class="help-block" *ngIf="f.invalid && f.touched">The form is invalid!</span>
   </div>
+
+
+  <div #accountInfo>{{content}}</div>
 </form>
